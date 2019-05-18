@@ -1,17 +1,23 @@
 package model;
 
-public class Participant {
+public class Participant implements Comparable<Participant>{
 	
-	private int id;
+	private String id;
 	private String firstName ;
 	private String lastName;
 	private String email;
-	private int gender;
-	private int country;
+	private String gender;
+	private String country;
 	//private ¿avatar? photo
-	private String birthday;
-	public Participant(int id, String firstName, String lastName, String email, int gender, int country,
-			String birthday) {
+	
+	private Participant rigth;
+	private Participant left;
+	
+	private Participant next;
+	private Participant preovious;
+	
+	public Participant(String id, String firstName, String lastName, String email, String gender, String country
+			) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -19,12 +25,12 @@ public class Participant {
 		this.email = email;
 		this.gender = gender;
 		this.country = country;
-		this.birthday = birthday;
+	
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getFirstName() {
@@ -45,24 +51,57 @@ public class Participant {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(int gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public int getCountry() {
+	public String getCountry() {
 		return country;
 	}
-	public void setCountry(int country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
-	public String getBirthday() {
-		return birthday;
+	@Override
+	public int compareTo(Participant arg0) {
+			int resul = 0;
+			if(firstName.compareToIgnoreCase(arg0.getFirstName())>0){
+				resul = 1;
+			}
+			else if(firstName.compareToIgnoreCase(arg0.getFirstName())<0){
+				resul = -1;
+			}else {
+				resul = 0;
+			}
+		return resul;
 	}
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+	public Participant getRigth() {
+		return rigth;
 	}
-	
-	
+	public void setRigth(Participant right) {
+		this.rigth = right;
+	}
+	public Participant getLeft() {
+		return left;
+	}
+	public void setLeft(Participant left) {
+		this.left = left;
+	}
+	@Override
+	public String toString() {
+		return firstName + "\t" + lastName + "\n";
+	}
+	public Participant getNext() {
+		return next;
+	}
+	public void setNext(Participant next) {
+		this.next = next;
+	}
+	public Participant getPreovious() {
+		return preovious;
+	}
+	public void setPreovious(Participant preovious) {
+		this.preovious = preovious;
+	}
 }
